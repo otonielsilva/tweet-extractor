@@ -15,7 +15,7 @@ jobs:
       uses: actions/setup-java@v1
       with:
         java-version: 1.8
-    - name: Build with Maven
+    - name: Build with Maven 
       run: ./mvnw -B package --file pom.xml -Ddocker.repository=otonielsilva/tweets-extractor
   publish-artifact:
     runs-on: ubuntu-latest

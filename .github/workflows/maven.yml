@@ -24,7 +24,7 @@ jobs:
     - name: Login on docker hub
       uses: elgohr/Publish-Docker-Github-Action@master  
       with:
-        registry: otonielsilva/tweets-extractor
+        name: otonielsilva/tweets-extractor
         username: ${{ secrets.DOCKER_USERNAME }}
         password: ${{ secrets.DOCKER_PASSWORD }}
 

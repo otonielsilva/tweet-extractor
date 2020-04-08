@@ -19,12 +19,14 @@ jobs:
       run: ./mvnw compile
   code-analysis:
       runs-on: ubuntu-latest
+      needs: compile
       steps: 
       - uses: actions/checkout@v2
       - name: SonarCloud Scan        
         run: ./mvnw verify sonar:sonar
   publish: 
     runs-on: ubuntu-latest
+    needs: [compile, code-analysis]
     steps:
     - uses: actions/checkout@v2
     - name: Set up JDK 1.8

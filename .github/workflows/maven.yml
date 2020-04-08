@@ -16,8 +16,7 @@ jobs:
       with:
         java-version: 1.8
     - name: Build with Maven 
-      run: ./mvnw -B package --file pom.xml -Ddocker.repository=otonielsilva/tweets-extractor    
-    - uses: actions/checkout@v2
+      run: ./mvnw -B package --file pom.xml -Ddocker.repository=otonielsilva/tweets-extractor        
     - name: Login on docker hub
       uses: elgohr/Publish-Docker-Github-Action@master  
       with:

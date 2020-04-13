@@ -1,0 +1,33 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: tweet-extractor
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: tweet-extractor
+  template:
+    metadata:
+      labels:
+        app: tweet-extractor
+        env: local
+    spec:
+      containers:
+        - name: app
+          image: otonielsilva/tweet-extractor:1.0.0-first-k8s
+          ports:
+            - containerPort: 8080
+          imagePullPolicy: Always
+---
+apiVersion: v1
+kind: Service
+metadata:
+  name: tweet-extractor
+spec:
+  selector:
+    app: tweet-extractor
+  ports:
+    - port: 80
+      targetPort: 8080
+  type: LoadBalancer

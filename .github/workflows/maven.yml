@@ -52,9 +52,9 @@ jobs:
         namespace: actions-rberrelleza
     - name: Deploy and Wait
       uses: okteto/actions/deploy@v1
-        env:
+      env:
           KUBECONFIG: ${{ steps.namespace.outputs.kubeconfig }}
-        with:
+      with:
           namespace: actions-rberrelleza
           manifest: kube/app.yml
           tag: ${{ secrets.DOCKER_USERNAME }}/tweet-extractor:latest

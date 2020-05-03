@@ -9,16 +9,16 @@ import java.util.List;
 @Component
 public class TweetReader {
     
-    @Value("${twitter.oauth_consumer}")
+    @Value("${OAUTH_CONSUMER}")
     private String oauthConsumer;
 
-    @Value("${twitter.oauth_access_token}")
+    @Value("${OAUTH_ACCESS_TOKEN}")
     private String oauthAccessToken;
 
-    @Value("${twitter.token_value}")
+    @Value("${TOKEN_VALUE}")
     private String token;
 
-    @Value("${twitter.token_secret}")
+    @Value("${TOKEN_SECRET}")
     private String tokenSecret;
 
    

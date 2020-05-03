@@ -40,7 +40,7 @@ jobs:
     - name: Publish in Docker Hub
       uses: elgohr/Publish-Docker-Github-Action@master  
       with:
-        name: otonielsilva/tweets-extractor
+        name: otonielsilva/tweet-extractor
         username: ${{ secrets.DOCKER_USERNAME }}
         password: ${{ secrets.DOCKER_PASSWORD }}
         buildargs: JAR_FILE=tweet_extractor.jar

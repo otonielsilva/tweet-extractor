@@ -15,10 +15,13 @@ spec:
     spec:
       containers:
         - name: app
-          image: otonielsilva/tweet-extractor:1.0.0-first-k8s
+          image: otonielsilva/tweet-extractor:latest
           ports:
             - containerPort: 8080
           imagePullPolicy: Always
+          envFrom:
+            - secretRef:
+                name: twitter-api-credentials
 ---
 apiVersion: v1
 kind: Service
@@ -31,3 +34,14 @@ spec:
     - port: 80
       targetPort: 8080
   type: LoadBalancer
+---
+apiVersion: v1
+kind: Secret
+metadata:
+  name: twitter-api-credentials
+type: Opaque
+data:
+  TOKEN_VALUE: {{TOKEN_VALUE}}
+  TOKEN_SECRET: {{TOKEN_SECRET}}
+  OAUTH_CONSUMER: {{OAUTH_CONSUMER}}
+  OAUTH_ACCESS_TOKEN: {{OAUTH_ACCESS_TOKEN}}

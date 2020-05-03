@@ -44,18 +44,23 @@ jobs:
         username: ${{ secrets.DOCKER_USERNAME }}
         password: ${{ secrets.DOCKER_PASSWORD }}
         buildargs: JAR_FILE=tweet_extractor.jar
-    - name: Get Kubeconfig
-      uses: okteto/actions/namespace@v1
-      id: namespace
-      with:
-        token: ${{ secrets.OKTETO_TOKEN }}
-        namespace: actions-rberrelleza
-    - name: Deploy and Wait
-      uses: okteto/actions/deploy@v1
-      env:
+  deploy:
+    runs-on: ubuntu-latest
+    needs: [publish]
+    steps:
+      - uses: actions/checkout@v2
+      - name: Get Kubeconfig
+        uses: okteto/actions/namespace@v1
+        id: namespace
+        with:
+          token: ${{ secrets.OKTETO_TOKEN }}
+          namespace: otonielsilva
+      - name: Deploy and Wait
+        uses: okteto/actions/deploy@v1
+        env:
           KUBECONFIG: ${{ steps.namespace.outputs.kubeconfig }}
-      with:
-          namespace: actions-rberrelleza
+        with:
+          namespace: otonielsilva
           manifest: kube/app.yml
           tag: ${{ secrets.DOCKER_USERNAME }}/tweet-extractor:latest
           waitOn: deployment/tweet-extractor

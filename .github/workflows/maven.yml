@@ -58,6 +58,8 @@ jobs:
         with:
           token: ${{ secrets.OKTETO_TOKEN }}
           namespace: otonielsilva
+      - name: Prepare secrets
+        run: kube/apply-k8s.sh
       - name: Deploy and Wait
         uses: okteto/actions/deploy@master
         env:

@@ -49,14 +49,17 @@ jobs:
     needs: [publish]
     steps:
       - uses: actions/checkout@v2
+      - uses: okteto/actions/login@master
+        with:
+          token: ${{ secrets.OKTETO_TOKEN }}
       - name: Get Kubeconfig
-        uses: okteto/actions/namespace@v1
+        uses: okteto/actions/namespace@master
         id: namespace
         with:
           token: ${{ secrets.OKTETO_TOKEN }}
           namespace: otonielsilva
       - name: Deploy and Wait
-        uses: okteto/actions/deploy@v1
+        uses: okteto/actions/deploy@master
         env:
           KUBECONFIG: ${{ steps.namespace.outputs.kubeconfig }}
         with:

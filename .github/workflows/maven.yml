@@ -66,6 +66,6 @@ jobs:
           KUBECONFIG: ${{ steps.namespace.outputs.kubeconfig }}
         with:
           namespace: otonielsilva
-          manifest: kube/app.yml
+          manifest: kube/new-app.yml
           tag: ${{ secrets.DOCKER_USERNAME }}/tweet-extractor:latest
           waitOn: deployment/tweet-extractor
